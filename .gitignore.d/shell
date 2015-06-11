@@ -4,4 +4,7 @@
 !/.gitignore.d
 !/.gitignore.d/shell
 !/.profile
+!/.profile.d
+!/.profile.d/*.bash
+!/.profile.d/*.sh
 !/.shellrc
