@@ -1,0 +1,7 @@
+*
+!/.bash_profile
+!/.bashrc
+!/.gitignore.d
+!/.gitignore.d/shell
+!/.profile
+!/.shellrc

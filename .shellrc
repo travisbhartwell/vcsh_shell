@@ -1,0 +1,83 @@
+# -*- shell-script -*-
+
+# UGLY hack to make sure this is done right
+dot_profile_sourced=${dot_profile_sourced-}
+
+# This is circuitous, but do this so the general profile is sourced,
+# which will then source this file
+if [ -z "${dot_profile_sourced}" ]; then
+    . "${HOME}/.profile"
+    return
+fi
+
+# "Global" variables for the rc
+dot_shellrc_sourced=${dot_shellrc_sourced-}
+shellrc_d="$HOME/.shellrc.d"
+local_shellrc_d="${shellrc_d}/${HOSTNAME}"
+
+# TODO: Come up with a name that isn't a valid hostname to use here
+common_shellrc_d="${shellrc_d}/common"
+
+# Need to only source this once
+if [ -n "${dot_shellrc_sourced}" ]; then
+    return
+fi
+
+debug "Sourcing ~/.shellrc"
+
+# TODO: Check for dependencies (functions, external programs, etc)
+
+source_posix_shellrc_d () {
+    if [ -z "${shellrc_d}" ]; then
+        return $(error 2 "source_posix_shellrc_d requires shellrc_d \
+to be defined.")
+    fi
+
+    debug "Sourcing POSIX files in ${shellrc_d}"
+
+    source_posix_files_in_dir "${shellrc_d}"
+}
+
+source_posix_local_shellrc_d () {
+    if [ -z "${local_shellrc_d}" ]; then
+        return $(error 2 "source_posix_local_shellrc_d requires \
+local_shellrc_d to be defined.")
+    fi
+
+    debug "Sourcing POSIX files in ${local_shellrc_d}"
+
+    source_posix_files_in_dir "${local_shellrc_d}"
+}
+
+source_shellrc_common_file () {
+    if [ -z "${common_shellrc_d}" ]; then
+        return $(error 2 "source_shellrc_common_file requires \
+common_shellrc_d be defined.")
+    fi
+
+    if [ $# -ne 1 ]; then
+        return $(error 1 "source_shellrc_common_file requires a \
+single parameter, the name of the file to source in \
+${common_shellrc_d}.")
+    fi
+
+    local shellrc_file="${common_shellrc_d}"/"${1}"
+
+    if [ -r "${shellrc_file}" ]; then
+        . "${shellrc_file}"
+    fi
+}
+
+source_posix_shellrc_d
+source_posix_local_shellrc_d
+
+# We have been sourced now
+dot_shellrc_sourced=1
+
+if [ -n "${BASH_VERSION}" ] && [ -r "${HOME}/.bashrc" ]; then
+    . "${HOME}/.bashrc"
+fi
+
+if [ -n "${ZSH_VERSION}" ] && [ -r "${HOME}/.zshrc" ]; then
+    . "${HOME}/.zshrc"
+fi
