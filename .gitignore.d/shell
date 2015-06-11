@@ -7,6 +7,9 @@
 !/.profile.d
 !/.profile.d/*.bash
 !/.profile.d/*.sh
+!/.profile.d/common
+!/.profile.d/common/*.bash
+!/.profile.d/common/*.sh
 !/.profile.d/**/*.bash
 !/.profile.d/**/*.sh
 !/.shellrc
