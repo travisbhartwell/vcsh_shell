@@ -1,8 +1,8 @@
 debug "Sourcing ~/.shellrc.d/common/virtualenvwrapper.bash"
 
-local wrapper_path=$(which virtualenvwrapper.sh)
+local wrapper_path=$(which virtualenvwrapper.sh 2> /dev/null)
 
-if [ -z "${wrapper_path}" ]; then
+if [ -n "${wrapper_path}" ]; then
     . "${wrapper_path}"
 
     declare -x virtualenv_prompt

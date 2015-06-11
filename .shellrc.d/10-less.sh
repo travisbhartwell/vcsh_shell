@@ -1,6 +1,6 @@
 debug "Sourcing ~/.shellrc.d/10-less.sh"
 
-if [ -n "$(which pygmentize)" ]; then
+if [ -n "$(which pygmentize 2> /dev/null)" ]; then
 	LESS='-iXFR'
 	LESSCOLORIZER='pygmentize -g'
 
