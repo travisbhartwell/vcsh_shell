@@ -7,4 +7,11 @@
 !/.profile.d
 !/.profile.d/*.bash
 !/.profile.d/*.sh
+!/.profile.d/**/*.bash
+!/.profile.d/**/*.sh
 !/.shellrc
+!/.shellrc.d
+!/.shellrc.d/*.bash
+!/.shellrc.d/*.sh
+!/.shellrc.d/**/*.bash
+!/.shellrc.d/**/*.sh
