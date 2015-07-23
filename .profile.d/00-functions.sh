@@ -7,11 +7,11 @@ sanitize_path_string () {
     local path_string="$@"
 
     # Expand to full name of home
-    path_string=$(echo $path_string | perl -pe "s%~%$HOME%g")
-    path_string=$(echo $path_string | perl -pe "s%\\$HOME%$HOME%g")
+    path_string=$(echo $path_string | sed -e "s%~%$HOME%g")
+    path_string=$(echo $path_string | sed -e "s%\\$HOME%$HOME%g")
 
     # Remove trailing slash
-    path_string=$(echo $path_string | perl -pe "s%/$%%g")
+    path_string=$(echo $path_string | sed -e "s%/$%%g")
 
     echo "${path_string}"
 }
