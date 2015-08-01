@@ -29,4 +29,4 @@ function _prompt_command()
     PS1="${prompt_start}${optional_split}${prompt_end}"
 }
 
-PROMPT_COMMAND=_prompt_command${PROMPT_COMMAND+; }$PROMPT_COMMAND
+__add_new_prompt_command _prompt_command

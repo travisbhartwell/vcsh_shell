@@ -2,6 +2,7 @@
 
 debug "Sourcing ~/.shellrc.d/00-prompt-support.bash"
 
+# These are functions that update the prompt
 function __add_new_prompt_fn()
 {
     if [ $# -lt 1 ]; then
@@ -12,6 +13,18 @@ function __add_new_prompt_fn()
     local fn="$@"
 
     __prompt_fns[${next_index}]="${fn}"
+}
+
+# These are functions that just need to run at every new prompt
+function __add_new_prompt_command()
+{
+    if [ $# -lt 1 ]; then
+        return 1
+    fi
+
+    local fn="$@"
+
+    PROMPT_COMMAND="${fn}"${PROMPT_COMMAND+; }$PROMPT_COMMAND
 }
 
 function __set_title_ps1()
