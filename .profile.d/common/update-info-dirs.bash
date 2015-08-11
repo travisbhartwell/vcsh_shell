@@ -8,7 +8,7 @@ mkdir -p "$dir"
 
 now=$(date "+%s")
 if [ -f "$dir/dir" ]; then
-    mtime=$(stat --format="%Y" .cache/info/dir)
+    mtime=$(stat --format="%Y" "$HOME/.cache/info/dir")
 else
     mtime=0
 fi
