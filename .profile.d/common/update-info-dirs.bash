@@ -3,6 +3,8 @@
 set -eu -o pipefail
 shopt -s nullglob
 
+if [ -z ${INFOPATH+x} ]; then exit 0; fi
+
 dir="$HOME/.cache/info"
 mkdir -p "$dir"
 
