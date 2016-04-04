@@ -23,3 +23,16 @@ serve_this_directory () {
         ${cmd}
     fi
 }
+
+serve_this_directory_localhost () {
+    show_my_ip
+
+    cmd="twistd --pidfile /tmp/twistd.pid -n web --path . --port tcp:8888:interface=127.0.0.1"
+
+    # Am I on Nix?
+    if [ -n "${NIXPKGS_CONFIG}" ]; then
+        nix-shell -p twisted --command "$cmd"
+    else
+        ${cmd}
+    fi
+}
