@@ -12,6 +12,9 @@ HISTFILESIZE=10000
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# Save multi-line commands as one command
+shopt -s cmdhist
+
 PROMPT_COMMAND="${PROMPT_COMMAND}${PROMPT_COMMAND+; }"
 PROMPT_COMMAND="${PROMPT_COMMAND}history -a; history -n"
 
