@@ -46,3 +46,7 @@ directories to add to PATH")
 
     export PATH
 }
+
+on_osx() {
+    [ "Darwin" = "$(uname -s)" ]
+}

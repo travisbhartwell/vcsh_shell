@@ -3,4 +3,8 @@
 
 debug "Sourcing ~/.shellrc.d/00-functions.bash"
 
-alias ls='ls --color=auto --group-directories-first'
+if ! on_osx; then
+    alias ls='ls --color=auto --group-directories-first'
+else
+    alias gls='gls --color=auto --group-directories-first'
+fi
